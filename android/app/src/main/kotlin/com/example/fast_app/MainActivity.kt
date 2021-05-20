@@ -1,4 +1,4 @@
-package com.example.fast_app
+package cl.solutionsgen.fast_app
 
 import io.flutter.embedding.android.FlutterActivity
 
