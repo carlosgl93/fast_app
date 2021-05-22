@@ -1,6 +1,7 @@
 import 'package:fast_app/general_providers.dart';
 import 'package:fast_app/repositories/CustomException.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 abstract class BaseAuthRepository {
   Stream<User?> get authStateChanges;
@@ -9,10 +10,13 @@ abstract class BaseAuthRepository {
   Future<void> signOut();
 }
 
+final authRepositoryProvider =
+    Provider<AuthRepository>((ref) => AuthRepository(ref.read));
+
 class AuthRepository implements BaseAuthRepository {
   final Reader _read;
 
-  const AuthRepository(this.read);
+  const AuthRepository(this._read);
 
   @override
   Stream<User?> get authStateChanges =>
